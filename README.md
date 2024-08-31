@@ -9,11 +9,13 @@ This project is modernization of SocialCalc. It is a web-based application that 
 
 * Express - [express.js](https://expressjs.com)
 * Node JS - [node.js](https://nodejs.org/en/about)
+* Socket.Io - [socket.io](https://socket.io/)
 * React - [react.dev](https://react.dev/)
 * Vite JS - [vitejs.dev](https://vitejs.dev/)
 * Bcrypt - [bycrypt.js](https://www.npmjs.com/package/bcryptjs)
 * JSON Web Tokens - [jwt.io](https://jwt.io/)
 * Handsontable  - [handsontable.com](https://handsontable.com/)
+* MongoDB - [MongoDB](https://www.mongodb.com/)
 
 ## Getting Started
 
@@ -24,6 +26,7 @@ This project requires the following npm packages:
 #### Backend
 
 - **[express](https://www.npmjs.com/package/express)**: Web framework for Node.js.
+- **[socket.io](https://www.npmjs.com/package/socket.io)**: Socket.IO enables real-time bidirectional event-based communication
 - **[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)**: For creating and verifying JSON Web Tokens.
 - **[bcrypt](https://www.npmjs.com/package/bcrypt)**: For hashing passwords.
 - **[mongoose](https://www.npmjs.com/package/mongoose)**: MongoDB object modeling tool (if using MongoDB).
@@ -35,6 +38,7 @@ This project requires the following npm packages:
 - **[react](https://www.npmjs.com/package/react)**: Frontend library for building user interfaces.
 - **[react-dom](https://www.npmjs.com/package/react-dom)**: For DOM-related rendering.
 - **[vite](https://www.npmjs.com/package/vite)**: Build tool for faster development.
+  
 
 ### Installation
 
