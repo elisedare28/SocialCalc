@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 import Spreadsheet from './components/Spreadsheet/Spreadsheet'
 import FileHandler from './components/FileHandler'
-import Spreadsheet1 from './components/Spreadsheet1'
 import {
   BrowserRouter,
   Routes,
