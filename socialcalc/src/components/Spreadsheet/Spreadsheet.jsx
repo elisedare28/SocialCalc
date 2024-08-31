@@ -7,7 +7,7 @@ import { registerAllModules } from 'handsontable/registry';
 import { HyperFormula } from 'hyperformula';
 import { io } from 'socket.io-client'; 
 import FileHandler from '../FileHandler';
-
+import { useNavigate } from 'react-router-dom';
 registerAllModules();
 
 const createInitialData = (rows, cols) => {
@@ -20,44 +20,57 @@ const Spreadsheet = () => {
   const [currentUser, setCurrentUser] = useState('');
   const hotTableComponent = useRef(null);
   const socket = useRef(null);
+  const navigate = useNavigate();
 
  
+ // Initialize WebSocket connection
+  // Check for token and redirect if not present
   useEffect(() => {
-    socket.current = io('http://localhost:3000');
-    
-    socket.current.on('connect', () => {
-      console.log('Connected to WebSocket server', socket.current.id);
-      setCurrentUser(socket.current.id); 
-      socket.current.emit('user-edit', socket.current.id); 
-    });
-
-    socket.current.on('update-users', (users) => {
-      setUsers(users);
-    });
-
-    socket.current.on('spreadsheet-update', (update) => {
-      setData(update);
-    });
-
-    socket.current.on('character-update', ({ cell, character }) => {
-      const [row, col] = cell;
-      setData((prevData) => {
-        const newData = [...prevData];
-        newData[row][col] = character;
-        return newData;
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/signin'); // Redirect to login page if no token found
+    } else {
+      // Initialize WebSocket connection only if authenticated
+      socket.current = io('http://localhost:3000', {
+        auth: {
+          token,
+        },
       });
-    });
+      
+      socket.current.on('connect', () => {
+        console.log('Connected to WebSocket server', socket.current.id);
+        setCurrentUser(socket.current.id); // Set the current user ID
+        socket.current.emit('user-edit', socket.current.id); // Send user ID to server
+      });
 
-    socket.current.on('disconnect', () => {
-      console.log('Disconnected from WebSocket server');
-    });
+      socket.current.on('update-users', (users) => {
+        setUsers(users);
+      });
 
-    return () => {
-      if (socket.current) {
-        socket.current.disconnect();
-      }
-    };
-  }, []);
+      socket.current.on('spreadsheet-update', (update) => {
+        setData(update);
+      });
+
+      socket.current.on('character-update', ({ cell, character }) => {
+        const [row, col] = cell;
+        setData((prevData) => {
+          const newData = [...prevData];
+          newData[row][col] = character;
+          return newData;
+        });
+      });
+
+      socket.current.on('disconnect', () => {
+        console.log('Disconnected from WebSocket server');
+      });
+
+      return () => {
+        if (socket.current) {
+          socket.current.disconnect();
+        }
+      };
+    }
+  }, [navigate]);
 
   
   useEffect(() => {
