@@ -20,7 +20,11 @@ const io = new socketIo(server,{
 });
 
 // Middleware to handle CORS
-app.use(cors());
+app.use(cors({
+  origin: "https://social-calc.vercel.app",
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(bodyParser.json());
   // Serve static files if needed
 app.use(express.static('public')); 
