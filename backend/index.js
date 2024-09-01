@@ -21,7 +21,7 @@ const io = new socketIo(server,{
 
 // Middleware to handle CORS
 app.use(cors({
-  origin: "https://social-calc.vercel.app",
+  origin: ["https://social-calc.vercel.app"],
   methods: ['GET', 'POST'],
   credentials: true
 }));
