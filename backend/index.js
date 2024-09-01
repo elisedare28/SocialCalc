@@ -24,6 +24,9 @@ app.use(cors());
 app.use(bodyParser.json());
   // Serve static files if needed
 app.use(express.static('public')); 
+app.get('/', (req, res) => {
+    res.send('Hello, world!');
+});
 
 const connect = async ()=> {
   try{
