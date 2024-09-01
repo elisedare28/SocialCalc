@@ -31,7 +31,7 @@ const Spreadsheet = () => {
       navigate('/signin'); // Redirect to login page if no token found
     } else {
       // Initialize WebSocket connection only if authenticated
-      socket.current = io('http://localhost:3000', {
+      socket.current = io('https://social-calc-api.vercel.app', {
         auth: {
           token,
         },
