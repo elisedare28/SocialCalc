@@ -20,7 +20,7 @@ export default function Signup() {
     }
 
     try {
-      const response = await axios.post("https://social-calc-api.vercel.app/api/users/signup", {
+      const response = await axios.post("/api/users/signup", {
         email,
         password,
         name
