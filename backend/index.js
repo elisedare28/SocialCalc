@@ -13,7 +13,7 @@ const app = express();
 const server = createServer(app);
 const io = new socketIo(server,{
   cors:{
-    origin: ["https://social-calc.vercel.app"], 
+    origin: ["*"], 
     methods: ['GET', 'POST'],
     credentials: true
   },
