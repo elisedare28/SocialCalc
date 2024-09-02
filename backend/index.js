@@ -25,9 +25,15 @@ app.use(cors({
   methods: ['GET', 'POST'],
   credentials: true
 }));
+
 app.use(bodyParser.json());
   // Serve static files if needed
 app.use(express.static('public')); 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.get('/', (req, res) => {
     res.send('Hello, world!');
 });
