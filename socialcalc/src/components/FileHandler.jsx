@@ -4,6 +4,7 @@ import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import './style.css'; // Make sure to import your CSS file
 
 const FileHandler = ({ data, setData }) => {
   const [selectedFormat, setSelectedFormat] = useState('');
@@ -76,8 +77,7 @@ const FileHandler = ({ data, setData }) => {
   };
 
   return (
-    <div className="file-handler">
-      {/* File Input for Importing Files */}
+    <div className="navbar">
       <input
         type="file"
         ref={fileInputRef}
@@ -86,8 +86,6 @@ const FileHandler = ({ data, setData }) => {
         onChange={handleFileImport}
       />
       <button onClick={triggerFileInput}>Import File</button>
-
-      {/* Dropdown for Downloading Files */}
       <select
         value={selectedFormat}
         onChange={(e) => setSelectedFormat(e.target.value)}
@@ -102,4 +100,4 @@ const FileHandler = ({ data, setData }) => {
   );
 };
 
-export default FileHandler;
+export default FileHandler;
