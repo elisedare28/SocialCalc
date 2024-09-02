@@ -19,7 +19,7 @@ export default function Login() {
     }
 
     try {
-      const response = await axios.post('https://social-calc-api.vercel.app/api/users/signin', {
+      const response = await axios.post('https://socialcalc-0ka9.onrender.com/api/users/signin', {
         email,
         password,
       });
